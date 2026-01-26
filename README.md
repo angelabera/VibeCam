@@ -191,46 +191,6 @@ npm run preview      # Preview production build locally
 npm run type-check   # Run TypeScript compiler check
 ```
 
-## 🎓 Learning Resources
-
-**Vue 3 & TypeScript:**
-- [Vue 3 Docs](https://vuejs.org/)
-- [TypeScript Vue Guide](https://vuejs.org/guide/typescript/overview.html)
-
-**Tailwind CSS:**
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
-
-**Canvas API:**
-- [MDN Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-
-**MediaDevices API:**
-- [MDN MediaDevices](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices)
-
-## 🚀 Future Enhancements
-
-- [ ] Photo history in session
-- [ ] Filter customization (intensity sliders)
-- [ ] Multiple camera options
-- [ ] Dark mode toggle
-- [ ] Sticker overlays
-- [ ] Batch photo processing
-- [ ] Social sharing buttons
-- [ ] PWA installation support
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## 👨‍💻 Author
 
 Created by Angela Bera
