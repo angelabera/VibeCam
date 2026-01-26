@@ -6,6 +6,7 @@ const isOpen = ref(false)
 const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'Filters', href: '#filters' },
+  { name: 'About', href: '#about' },
   { name: 'Camera', href: '#camera' },
 ]
 

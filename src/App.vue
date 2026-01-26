@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import Navbar from './components/Navbar.vue'
 import HeroSection from './components/HeroSection.vue'
 import FilterSection from './components/FilterSection.vue'
+import AboutSection from './components/AboutSection.vue'
 import CameraCallToAction from './components/CameraCallToAction.vue'
 import CameraView from './components/CameraView.vue'
 import Footer from './components/Footer.vue'
@@ -22,6 +23,7 @@ const handleCameraCapture = () => {
     <main>
       <HeroSection />
       <FilterSection />
+      <AboutSection />
       <CameraCallToAction @capture="handleCameraCapture" />
       <Footer />
     </main>

@@ -112,7 +112,7 @@ const hoveredIcon = ref<string | null>(null)
           <p class="text-sm text-purple-300">
             © {{ currentYear }} VibeCam. Made with 
             <span class="inline-block animate-pulse">💜</span> 
-            using Vue.js
+            by Angela Bera.
           </p>
           <div class="flex items-center gap-2 text-xs text-purple-400">
             <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
