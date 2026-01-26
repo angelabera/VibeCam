@@ -19,7 +19,7 @@ const handleCameraCapture = () => {
     <Navbar />
     
     <!-- Main Content -->
-    <main class="pt-16">
+    <main>
       <HeroSection />
       <FilterSection />
       <CameraCallToAction @capture="handleCameraCapture" />

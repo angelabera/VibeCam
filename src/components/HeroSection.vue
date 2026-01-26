@@ -1,44 +1,29 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
-const scrollY = ref(0)
-
-const floatingElements = [
-  { id: 1, top: '20%', left: '10%', size: 'w-32 h-32', delay: '0s' },
-  { id: 2, top: '60%', right: '15%', size: 'w-40 h-40', delay: '0.2s' },
-  { id: 3, top: '40%', left: '5%', size: 'w-24 h-24', delay: '0.4s' },
-]
-
-onMounted(() => {
-  window.addEventListener('scroll', () => {
-    scrollY.value = window.scrollY
-  })
-})
+import Aurora from './Aurora.vue'
 
 const scrollToCamera = () => {
   document.querySelector('#camera')?.scrollIntoView({ behavior: 'smooth' })
 }
+// secondary filter button removed
 </script>
 
 <template>
   <section
     id="home"
-    class="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100"
+    class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100"
   >
-    <!-- Floating Elements -->
-    <div
-      v-for="element in floatingElements"
-      :key="element.id"
-      :style="{
-        top: element.top,
-        [element.id % 2 === 0 ? 'right' : 'left']: element.id % 2 === 0 ? element.right : element.left,
-        animationDelay: element.delay,
-        transform: `translateY(${scrollY * 0.3}px)`,
-        background: `hsl(${280 + element.id * 30}, 70%, 60%)`,
-      }"
-      :class="element.size"
-      class="absolute rounded-full opacity-20 blur-3xl pointer-events-none transition-smooth"
-    />
+
+    <!-- Aurora Canvas Background -->
+    <div class="absolute inset-0 pointer-events-none">
+      <Aurora
+        :color-stops="['#e9d5ff', '#c084fc', '#a78bfa']"
+        :amplitude="1.0"
+        :blend="0.5"
+        :speed="1.0"
+        :intensity="1.0"
+        class="w-full h-full"
+      />
+    </div>
 
     <!-- Content -->
     <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
@@ -55,22 +40,17 @@ const scrollToCamera = () => {
         </p>
 
         <!-- CTA Button -->
-        <button
-          @click="scrollToCamera"
-          class="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-soft-pink to-soft-purple text-white font-semibold text-lg transition-smooth hover:shadow-lg hover:scale-105 active:scale-95"
-        >
-          Start Capturing →
-        </button>
-      </div>
-
-      <!-- Decorative Card -->
-      <div class="mt-16 relative animate-float" style="animation-delay: 0.2s">
-        <div class="glass p-8 rounded-2xl max-w-xs mx-auto">
-          <div class="text-5xl mb-2">📷</div>
-          <p class="text-gray-700 font-medium">Polaroid-style photos</p>
-          <p class="text-gray-500 text-sm mt-2">with vintage filters</p>
+        <div class="mt-8 flex items-center justify-center">
+          <button
+            @click="scrollToCamera"
+            class="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-soft-pink to-soft-purple text-white font-semibold text-lg transition-smooth hover:shadow-lg hover:scale-105 active:scale-95"
+          >
+            Start Capturing →
+          </button>
         </div>
       </div>
+
+      <!-- decorative card removed to keep hero minimal and centered -->
     </div>
 
     <!-- Scroll Indicator -->
