@@ -33,25 +33,25 @@ const scrollToCamera = () => {
       <div class="text-center animate-slide-up space-y-8">
         <!-- Main Heading -->
         <div class="space-y-4 pt-8">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
             <span class="hero-title">Capture Your </span>
             <span class="bg-gradient-to-r from-soft-pink via-soft-purple to-soft-blue bg-clip-text text-transparent">
               Creative Vibe
             </span>
           </h1>
 
-          <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+          <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
             Transform your everyday moments into stunning polaroid-style memories with beautiful aesthetic filters — all in your browser
           </p>
         </div>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full sm:w-auto">
           <button
             @click="scrollToCamera"
-            class="group relative px-8 py-4 rounded-full bg-gradient-to-r from-soft-pink via-soft-purple to-soft-blue text-white font-bold text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-purple-400/40 hover:scale-105 active:scale-95"
+            class="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-soft-pink via-soft-purple to-soft-blue text-white font-bold text-base sm:text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-purple-400/40 hover:scale-105 active:scale-95"
           >
-            <span class="relative flex items-center gap-2">
+            <span class="relative flex items-center justify-center sm:justify-start gap-2">
               Start Creating
               <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -61,7 +61,7 @@ const scrollToCamera = () => {
           
           <a
             href="#about"
-            class="px-8 py-4 rounded-full border-2 border-purple-300 text-purple-700 font-bold text-lg hover:bg-purple-50 transition-all duration-300"
+            class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full border-2 border-purple-300 text-purple-700 font-bold text-base sm:text-lg text-center hover:bg-purple-50 transition-all duration-300"
           >
             Learn More
           </a>

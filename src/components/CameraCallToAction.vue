@@ -13,26 +13,26 @@ const handleCapture = () => {
     <div class="max-w-4xl mx-auto">
       <!-- Section Content -->
       <div class="text-center animate-slide-up">
-        <h2 class="text-5xl sm:text-6xl font-bold mb-6 text-gray-900">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-gray-900">
           Are you ready for a <span class="bg-gradient-to-r from-soft-pink to-soft-purple bg-clip-text text-transparent">shoot?</span>
         </h2>
 
-        <p class="text-xl text-gray-600 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-8 sm:mb-12 font-light max-w-2xl mx-auto leading-relaxed">
           Click below to open your camera and start capturing beautiful moments with aesthetic filters
         </p>
 
         <!-- Capture Button -->
         <button
           @click="handleCapture"
-          class="inline-flex items-center justify-center px-10 py-5 rounded-full bg-gradient-to-r from-[#f78fb3] via-[#9b5de5] to-[#7c3aed] text-white font-bold text-lg transition-smooth hover:shadow-2xl hover:scale-110 active:scale-95"
+          class="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-full bg-gradient-to-r from-[#f78fb3] via-[#9b5de5] to-[#7c3aed] text-white font-bold text-base sm:text-lg transition-smooth hover:shadow-2xl hover:scale-110 active:scale-95"
         >
           <span class="mr-3">📷</span>
           Capture
         </button>
 
         <!-- Decorative Info -->
-        <div class="mt-12 glass p-6 rounded-xl max-w-sm mx-auto">
-          <p class="text-sm text-gray-700">
+        <div class="mt-8 sm:mt-12 glass p-4 sm:p-6 rounded-xl max-w-sm mx-auto w-full sm:w-auto">
+          <p class="text-xs sm:text-sm text-gray-700">
             ✨ Your browser will request permission to access your camera. We never store or upload any of your photos.
           </p>
         </div>

@@ -75,7 +75,7 @@ const hoveredFilter = ref<string | null>(null)
       </div>
 
       <!-- Filters Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         <div
           v-for="(filter, index) in filters"
           :key="filter.id"
@@ -86,7 +86,7 @@ const hoveredFilter = ref<string | null>(null)
         >
           <!-- Polaroid Card -->
           <div
-            class="polaroid cursor-pointer transition-smooth group h-80"
+            class="polaroid cursor-pointer transition-smooth group h-64 sm:h-72 md:h-80"
             :class="{
               'scale-105 shadow-2xl': hoveredFilter === filter.id,
               'shadow-lg': hoveredFilter !== filter.id,

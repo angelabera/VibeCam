@@ -57,52 +57,52 @@ const stats = [
       </div>
 
       <!-- Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mb-16 sm:mb-20">
         <div
           v-for="stat in stats"
           :key="stat.label"
           class="relative group"
         >
           <div class="absolute inset-0 bg-gradient-to-br from-soft-pink/20 to-soft-purple/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-6 text-center hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1">
-            <div class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-soft-purple to-soft-pink bg-clip-text text-transparent mb-2">
+          <div class="relative bg-white/80 backdrop-blur-sm border border-gray-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1">
+            <div class="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-soft-purple to-soft-pink bg-clip-text text-transparent mb-2">
               {{ stat.value }}
             </div>
-            <div class="text-sm text-gray-600 font-medium">{{ stat.label }}</div>
+            <div class="text-xs sm:text-sm text-gray-600 font-medium">{{ stat.label }}</div>
           </div>
         </div>
       </div>
 
       <!-- Features Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         <div
           v-for="(feature, index) in features"
           :key="feature.title"
           class="group relative"
         >
           <div class="absolute inset-0 bg-gradient-to-br from-soft-pink/10 to-soft-purple/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative bg-white/70 backdrop-blur-sm border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 hover:-translate-y-2">
+          <div class="relative bg-white/70 backdrop-blur-sm border border-gray-100 rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 hover:-translate-y-2">
             <!-- Icon -->
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-soft-pink via-soft-purple to-soft-blue flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <svg v-if="feature.icon === 'shield'" class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-gradient-to-br from-soft-pink via-soft-purple to-soft-blue flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <svg v-if="feature.icon === 'shield'" class="w-6 sm:w-7 h-6 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
-              <svg v-else-if="feature.icon === 'bolt'" class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg v-else-if="feature.icon === 'bolt'" class="w-6 sm:w-7 h-6 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              <svg v-else-if="feature.icon === 'gift'" class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg v-else-if="feature.icon === 'gift'" class="w-6 sm:w-7 h-6 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
               </svg>
-              <svg v-else class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg v-else class="w-6 sm:w-7 h-6 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
               </svg>
             </div>
 
             <!-- Content -->
-            <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-700 transition-colors">
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-purple-700 transition-colors">
               {{ feature.title }}
             </h3>
-            <p class="text-gray-600 leading-relaxed">
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
               {{ feature.description }}
             </p>
 

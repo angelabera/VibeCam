@@ -262,12 +262,12 @@ const switchFilter = (filterId: string) => {
     </div>
 
     <!-- Camera Panel - show when stream exists OR when not loading/error -->
-    <div v-else-if="videoStream" class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div v-else-if="videoStream" class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-2xl w-full mx-4 sm:mx-0 max-h-[90vh] overflow-y-auto">
       
       <!-- Header -->
-      <div class="sticky top-0 bg-gradient-to-r from-soft-pink/10 to-soft-purple/10 p-6 border-b border-gray-200">
-        <div class="flex justify-between items-center">
-          <h2 class="text-2xl font-bold text-gray-800">Capture Your Moment</h2>
+      <div class="sticky top-0 bg-gradient-to-r from-soft-pink/10 to-soft-purple/10 p-4 sm:p-6 border-b border-gray-200">
+        <div class="flex justify-between items-center gap-3">
+          <h2 class="text-lg sm:text-2xl font-bold text-gray-800">Capture Your Moment</h2>
           <button
             @click="stopCamera"
             class="text-gray-500 hover:text-gray-800 transition-colors"
@@ -281,7 +281,7 @@ const switchFilter = (filterId: string) => {
       </div>
 
       <!-- Content -->
-      <div class="p-6">
+      <div class="p-4 sm:p-6">
         <!-- Camera Feed or Captured Image -->
         <div v-if="!capturedImage" class="mb-6 relative">
           <video
@@ -306,8 +306,8 @@ const switchFilter = (filterId: string) => {
 
         <!-- Filter Selection -->
         <div v-if="!capturedImage" class="mb-6">
-          <h3 class="text-lg font-semibold text-gray-800 mb-4">Select Filter</h3>
-          <div class="grid grid-cols-5 gap-3">
+          <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Select Filter</h3>
+          <div class="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
             <button
               v-for="filter in filters"
               :key="filter.id"
@@ -326,12 +326,12 @@ const switchFilter = (filterId: string) => {
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex gap-3">
+        <div class="grid grid-cols-2 sm:flex gap-2 sm:gap-3">
           <button
             v-if="!capturedImage"
             @click="capturePhoto"
             :disabled="isLoading"
-            class="flex-1 py-3 px-4 rounded-lg bg-gradient-to-r from-soft-pink to-soft-purple text-white font-semibold transition-smooth hover:shadow-lg disabled:opacity-50"
+            class="col-span-2 sm:flex-1 py-2 sm:py-3 px-3 sm:px-4 rounded-lg bg-gradient-to-r from-soft-pink to-soft-purple text-white font-semibold text-sm sm:text-base transition-smooth hover:shadow-lg disabled:opacity-50"
           >
             📷 {{ isLoading ? 'Capturing...' : 'Capture' }}
           </button>
@@ -339,7 +339,7 @@ const switchFilter = (filterId: string) => {
           <button
             v-if="capturedImage"
             @click="downloadPolaroid"
-            class="flex-1 py-3 px-4 rounded-lg bg-gradient-to-r from-soft-pink to-soft-purple text-white font-semibold transition-smooth hover:shadow-lg"
+            class="sm:flex-1 py-2 sm:py-3 px-3 sm:px-4 rounded-lg bg-gradient-to-r from-soft-pink to-soft-purple text-white font-semibold text-sm sm:text-base transition-smooth hover:shadow-lg"
           >
             ⬇️ Download
           </button>
@@ -347,14 +347,14 @@ const switchFilter = (filterId: string) => {
           <button
             v-if="capturedImage"
             @click="resetCamera"
-            class="flex-1 py-3 px-4 rounded-lg bg-gray-200 text-gray-800 font-semibold transition-smooth hover:bg-gray-300"
+            class="sm:flex-1 py-2 sm:py-3 px-3 sm:px-4 rounded-lg bg-gray-200 text-gray-800 font-semibold text-sm sm:text-base transition-smooth hover:bg-gray-300"
           >
             🔄 Retake
           </button>
 
           <button
             @click="stopCamera"
-            class="flex-1 py-3 px-4 rounded-lg bg-gray-200 text-gray-800 font-semibold transition-smooth hover:bg-gray-300"
+            class="sm:flex-1 py-2 sm:py-3 px-3 sm:px-4 rounded-lg bg-gray-200 text-gray-800 font-semibold text-sm sm:text-base transition-smooth hover:bg-gray-300"
           >
             ✕ Close
           </button>
