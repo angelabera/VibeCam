@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch, onUnmounted } from 'vue'
 
 const emit = defineEmits<{
   close: []
@@ -16,7 +16,9 @@ const videoElement = ref<HTMLVideoElement | null>(null)
 const canvasElement = ref<HTMLCanvasElement | null>(null)
 const capturedImage = ref<string | null>(null)
 const selectedFilter = ref<string>('vintage')
-const isLoading = ref(false)
+const isLoading = ref(true)
+const errorMessage = ref<string | null>(null)
+const isVideoReady = ref(false)
 
 const filters: Filter[] = [
   {
@@ -97,17 +99,57 @@ const filters: Filter[] = [
   },
 ]
 
+// Watch for the video element to be available, then assign stream
+watch(videoElement, (el) => {
+  if (el && videoStream.value) {
+    el.srcObject = videoStream.value
+    el.onloadedmetadata = () => {
+      console.log('Video metadata loaded:', el.videoWidth, 'x', el.videoHeight)
+      isVideoReady.value = true
+      isLoading.value = false
+    }
+    el.play().catch((e) => {
+      console.warn('Auto-play blocked:', e)
+      isLoading.value = false
+    })
+  }
+})
+
 onMounted(async () => {
   try {
-    videoStream.value = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: 'user' },
+    errorMessage.value = null
+    isLoading.value = true
+    isVideoReady.value = false
+
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
       audio: false,
     })
+
+    videoStream.value = stream
+    // If video element is already mounted, assign srcObject now
     if (videoElement.value) {
-      videoElement.value.srcObject = videoStream.value
+      videoElement.value.srcObject = stream
+      videoElement.value.onloadedmetadata = () => {
+        console.log('Video metadata loaded (direct):', videoElement.value?.videoWidth, 'x', videoElement.value?.videoHeight)
+        isVideoReady.value = true
+        isLoading.value = false
+      }
+      videoElement.value.play().catch((e) => {
+        console.warn('Auto-play blocked:', e)
+        isLoading.value = false
+      })
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error accessing camera:', error)
+    errorMessage.value = error?.message || String(error)
+    isLoading.value = false
+  }
+})
+
+onUnmounted(() => {
+  if (videoStream.value) {
+    videoStream.value.getTracks().forEach((track) => track.stop())
   }
 })
 
@@ -118,12 +160,14 @@ const capturePhoto = () => {
   const ctx = canvasElement.value.getContext('2d')
   if (!ctx) return
 
-  // Set canvas dimensions to match video
-  canvasElement.value.width = videoElement.value.videoWidth
-  canvasElement.value.height = videoElement.value.videoHeight
+  // Set canvas dimensions to match video; fallback to element size
+  const vw = videoElement.value.videoWidth || videoElement.value.clientWidth || 640
+  const vh = videoElement.value.videoHeight || videoElement.value.clientHeight || 480
+  canvasElement.value.width = vw
+  canvasElement.value.height = vh
 
-  // Draw video frame to canvas
-  ctx.drawImage(videoElement.value, 0, 0)
+  // Draw video frame to canvas scaled to canvas size
+  ctx.drawImage(videoElement.value, 0, 0, canvasElement.value.width, canvasElement.value.height)
 
   // Apply selected filter
   const filter = filters.find((f) => f.id === selectedFilter.value)
@@ -183,6 +227,14 @@ const stopCamera = () => {
     videoStream.value.getTracks().forEach((track) => track.stop())
     videoStream.value = null
   }
+  if (videoElement.value) {
+    try {
+      videoElement.value.srcObject = null
+      videoElement.value.pause()
+    } catch (e) {
+      // ignore
+    }
+  }
   emit('close')
 }
 
@@ -192,8 +244,26 @@ const switchFilter = (filterId: string) => {
 </script>
 
 <template>
-  <div class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" v-if="videoStream">
-    <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+  <div class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+    <!-- Error State -->
+    <div v-if="errorMessage" class="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
+      <h3 class="text-lg font-bold mb-2">Camera Error</h3>
+      <p class="text-sm text-gray-700 mb-4">{{ errorMessage }}</p>
+      <div class="flex justify-end">
+        <button @click="stopCamera" class="px-4 py-2 rounded bg-gray-200">Close</button>
+      </div>
+    </div>
+
+    <!-- Loading State (before stream is ready) -->
+    <div v-else-if="isLoading && !videoStream" class="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg text-center">
+      <div class="animate-spin w-12 h-12 border-4 border-soft-purple rounded-full mx-auto mb-4" style="border-top-color: transparent"></div>
+      <p class="font-medium">Starting camera…</p>
+      <p class="text-sm text-gray-500 mt-2">Please allow camera access if prompted.</p>
+    </div>
+
+    <!-- Camera Panel - show when stream exists OR when not loading/error -->
+    <div v-else-if="videoStream" class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      
       <!-- Header -->
       <div class="sticky top-0 bg-gradient-to-r from-soft-pink/10 to-soft-purple/10 p-6 border-b border-gray-200">
         <div class="flex justify-between items-center">
@@ -213,13 +283,22 @@ const switchFilter = (filterId: string) => {
       <!-- Content -->
       <div class="p-6">
         <!-- Camera Feed or Captured Image -->
-        <div v-if="!capturedImage" class="mb-6">
+        <div v-if="!capturedImage" class="mb-6 relative">
           <video
             ref="videoElement"
             autoplay
             playsinline
-            class="w-full rounded-2xl bg-black"
+            muted
+            class="w-full rounded-2xl"
+            style="background: #222; min-height: 300px;"
           />
+          <!-- Loading overlay while video initializes -->
+          <div v-if="isLoading" class="absolute inset-0 flex items-center justify-center bg-gray-900/50 rounded-2xl">
+            <div class="text-center text-white">
+              <div class="animate-spin w-10 h-10 border-4 border-white rounded-full mx-auto mb-2" style="border-top-color: transparent"></div>
+              <p class="text-sm">Initializing camera…</p>
+            </div>
+          </div>
         </div>
         <div v-else class="mb-6">
           <img :src="capturedImage" alt="Captured" class="w-full rounded-2xl shadow-lg" />
