@@ -26,7 +26,7 @@ const filters = ref<Filter[]>([
     id: 'warm',
     name: 'Warm',
     emoji: '🔥',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr9ksjMaa3-ubp2Mv2mUxKOUf3vlgH98femw&s',
+    image: 'https://img.freepik.com/free-photo/house-with-tall-trees-beautiful-sunshine_181624-4087.jpg?semt=ais_hybrid&w=740&q=80',
     description: 'Golden hues',
     colors: { primary: '#F4A460', secondary: '#FFD700' },
   },
