@@ -33,7 +33,10 @@ const hoveredIcon = ref<string | null>(null)
           <div class="md:col-span-5">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-soft-pink via-soft-purple to-soft-blue flex items-center justify-center shadow-lg">
-                <span class="text-2xl">📸</span>
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0118.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
               </div>
               <h3 class="text-3xl font-bold text-white">
                 VibeCam
@@ -78,9 +81,8 @@ const hoveredIcon = ref<string | null>(null)
               Navigation
             </h4>
             <ul class="space-y-3">
-              <li v-for="link in [{name: 'Home', href: '#home', icon: '🏠'}, {name: 'Filters', href: '#filters', icon: '🎨'}, {name: 'Camera', href: '#camera', icon: '📷'}]" :key="link.name">
+              <li v-for="link in [{name: 'Home', href: '#home'}, {name: 'Filters', href: '#filters'}, {name: 'About', href: '#about'}, {name: 'Camera', href: '#camera'}]" :key="link.name">
                 <a :href="link.href" class="group flex items-center gap-2 text-purple-200 hover:text-white transition-all duration-300">
-                  <span class="text-sm opacity-60 group-hover:opacity-100 transition-opacity">{{ link.icon }}</span>
                   <span class="group-hover:translate-x-1 transition-transform">{{ link.name }}</span>
                 </a>
               </li>
@@ -94,8 +96,10 @@ const hoveredIcon = ref<string | null>(null)
               Why VibeCam?
             </h4>
             <ul class="space-y-3">
-              <li v-for="feature in [{icon: '🔒', text: '100% Private — nothing leaves your browser'}, {icon: '⚡', text: 'Instant filters with real-time preview'}, {icon: '🎁', text: 'Free forever, no sign-up required'}]" :key="feature.text" class="flex items-start gap-3">
-                <span class="text-lg">{{ feature.icon }}</span>
+              <li v-for="feature in [{text: '100% Private — nothing leaves your browser'}, {text: 'Instant filters with real-time preview'}, {text: 'Free forever, no sign-up required'}]" :key="feature.text" class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-soft-purple flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
                 <span class="text-purple-200 text-sm leading-relaxed">{{ feature.text }}</span>
               </li>
             </ul>

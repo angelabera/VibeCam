@@ -24,7 +24,7 @@ const features = [
 
 const stats = [
   { value: '100%', label: 'Private' },
-  { value: '5+', label: 'Filters' },
+  { value: '5', label: 'Filters' },
   { value: '0', label: 'Data Collected' },
   { value: '∞', label: 'Memories' },
 ]
