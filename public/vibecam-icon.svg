@@ -1,0 +1,21 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f78fb3;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9b5de5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded background -->
+  <rect width="32" height="32" rx="8" fill="url(#grad1)" opacity="0.15"/>
+  
+  <!-- Camera icon -->
+  <g stroke="url(#grad1)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Camera body -->
+    <path d="M5 11C4.44772 11 4 11.4477 4 12V24C4 24.5523 4.44772 25 5 25H27C27.5523 25 28 24.5523 28 24V12C28 11.4477 27.5523 11 27 11H24L22 7H10L8 11H5Z" />
+    <!-- Lens circle -->
+    <circle cx="16" cy="17.5" r="4.5" />
+  </g>
+</svg>

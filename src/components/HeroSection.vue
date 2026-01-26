@@ -4,7 +4,6 @@ import Aurora from './Aurora.vue'
 const scrollToCamera = () => {
   document.querySelector('#camera')?.scrollIntoView({ behavior: 'smooth' })
 }
-// secondary filter button removed
 </script>
 
 <template>
@@ -25,30 +24,79 @@ const scrollToCamera = () => {
       />
     </div>
 
+    <!-- Floating decorative elements -->
+    <div class="absolute top-20 left-10 w-32 h-32 bg-soft-pink/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-40 h-40 bg-soft-purple/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+
     <!-- Content -->
-    <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-      <!-- Animated entrance -->
-      <div class="animate-slide-up">
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-          <span class="hero-title">Capture Your Vibe</span>
-        </h1>
+    <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <div class="text-center animate-slide-up space-y-8">
+        <!-- Main Heading -->
+        <div class="space-y-4 pt-8">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
+            <span class="hero-title">Capture Your </span>
+            <span class="bg-gradient-to-r from-soft-pink via-soft-purple to-soft-blue bg-clip-text text-transparent">
+              Creative Vibe
+            </span>
+          </h1>
 
-        <p class="text-xl sm:text-2xl text-gray-600 mb-8 font-light leading-relaxed">
-          Transform your moments into beautiful polaroid memories with aesthetic filters
-        </p>
+          <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+            Transform your everyday moments into stunning polaroid-style memories with beautiful aesthetic filters — all in your browser
+          </p>
+        </div>
 
-        <!-- CTA Button -->
-        <div class="mt-8 flex items-center justify-center">
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <button
             @click="scrollToCamera"
-            class="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-soft-pink to-soft-purple text-white font-semibold text-lg transition-smooth hover:shadow-lg hover:scale-105 active:scale-95"
+            class="group relative px-8 py-4 rounded-full bg-gradient-to-r from-soft-pink via-soft-purple to-soft-blue text-white font-bold text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-purple-400/40 hover:scale-105 active:scale-95"
           >
-            Start Capturing →
+            <span class="relative flex items-center gap-2">
+              Start Creating
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
           </button>
+          
+          <a
+            href="#about"
+            class="px-8 py-4 rounded-full border-2 border-purple-300 text-purple-700 font-bold text-lg hover:bg-purple-50 transition-all duration-300"
+          >
+            Learn More
+          </a>
         </div>
       </div>
 
-      <!-- decorative card removed to keep hero minimal and centered -->
+      <!-- Image Showcase Cards -->
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div
+          v-for="(item, index) in [
+            { title: 'Capture', desc: 'Use your camera' },
+            { title: 'Filter', desc: 'Choose your style' },
+            { title: 'Create', desc: 'Make memories' }
+          ]"
+          :key="index"
+          class="group relative"
+        >
+          <div class="absolute inset-0 bg-gradient-to-br from-soft-pink/30 to-soft-purple/30 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+          <div class="relative p-6 rounded-2xl border-2 border-purple-200/40 bg-white/40 backdrop-blur-md hover:border-purple-300/60 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-purple-200/20">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-soft-pink/30 to-soft-purple/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <svg v-if="index === 0" class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+              </svg>
+              <svg v-else-if="index === 1" class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+              </svg>
+              <svg v-else class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">{{ item.title }}</h3>
+            <p class="text-sm text-gray-600">{{ item.desc }}</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Scroll Indicator -->
@@ -63,19 +111,14 @@ const scrollToCamera = () => {
 <style scoped>
 button {
   border: none;
-  background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
   cursor: pointer;
 }
 
-button:hover {
-  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
-}
-
-/* simple dark purple title */
+/* Hero title styling */
 .hero-title {
   color: #7e1fad; /* dark violet */
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.02em;
-  text-shadow: 0 6px 18px rgba(76,29,149,0.06);
+  text-shadow: 0 6px 18px rgba(76, 29, 149, 0.06);
 }
 </style>

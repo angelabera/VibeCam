@@ -9,15 +9,15 @@ const handleCapture = () => {
 </script>
 
 <template>
-  <section id="camera" class="w-full py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#ffe6f4] via-[#d9b8ff] to-[#b784ff]">
+  <section id="camera" class="w-full py-20 px-4 sm:px-6 lg:px-8 bg-white">
     <div class="max-w-4xl mx-auto">
       <!-- Section Content -->
       <div class="text-center animate-slide-up">
-        <h2 class="text-5xl sm:text-6xl font-bold mb-6 text-gray-800">
+        <h2 class="text-5xl sm:text-6xl font-bold mb-6 text-gray-900">
           Are you ready for a <span class="bg-gradient-to-r from-soft-pink to-soft-purple bg-clip-text text-transparent">shoot?</span>
         </h2>
 
-        <p class="text-xl text-[#4a0fa8] mb-12 font-light max-w-2xl mx-auto leading-relaxed">
+        <p class="text-xl text-gray-600 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
           Click below to open your camera and start capturing beautiful moments with aesthetic filters
         </p>
 
