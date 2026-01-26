@@ -30,9 +30,7 @@ const scrollToCamera = () => {
       <!-- Animated entrance -->
       <div class="animate-slide-up">
         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-          <span class="bg-gradient-to-r from-soft-pink via-soft-purple to-soft-blue bg-clip-text text-transparent">
-            Capture Your Vibe
-          </span>
+          <span class="hero-title">Capture Your Vibe</span>
         </h1>
 
         <p class="text-xl sm:text-2xl text-gray-600 mb-8 font-light leading-relaxed">
@@ -71,5 +69,13 @@ button {
 
 button:hover {
   box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
+}
+
+/* simple dark purple title */
+.hero-title {
+  color: #7e1fad; /* dark violet */
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 6px 18px rgba(76,29,149,0.06);
 }
 </style>

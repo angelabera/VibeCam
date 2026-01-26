@@ -5,6 +5,7 @@ interface Filter {
   id: string
   name: string
   emoji: string
+  image?: string
   description: string
   colors: {
     primary: string
@@ -17,6 +18,7 @@ const filters = ref<Filter[]>([
     id: 'vintage',
     name: 'Vintage',
     emoji: '📼',
+    image: 'https://www.befunky.com/images/wp/wp-2023-08-vintage-photo-effects-vintage-colors.jpg?auto=avif,webp&format=jpg&width=944',
     description: 'Warm sepia tones',
     colors: { primary: '#C4A87C', secondary: '#E8D4B8' },
   },
@@ -24,6 +26,7 @@ const filters = ref<Filter[]>([
     id: 'warm',
     name: 'Warm',
     emoji: '🔥',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr9ksjMaa3-ubp2Mv2mUxKOUf3vlgH98femw&s',
     description: 'Golden hues',
     colors: { primary: '#F4A460', secondary: '#FFD700' },
   },
@@ -31,6 +34,7 @@ const filters = ref<Filter[]>([
     id: 'cool',
     name: 'Cool',
     emoji: '❄️',
+    image: 'https://plus.unsplash.com/premium_photo-1673285285994-6bfff235db97?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bmF0dXJlJTIwYWVzdGhldGljfGVufDB8fDB8fHww',
     description: 'Blue tones',
     colors: { primary: '#87CEEB', secondary: '#B0E0E6' },
   },
@@ -38,6 +42,7 @@ const filters = ref<Filter[]>([
     id: 'noir',
     name: 'Noir',
     emoji: '🌑',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIwZNGUOImvv58p-pfJQ4mJJ0yGwJy9xlRvQ&s',
     description: 'High contrast B&W',
     colors: { primary: '#1A1A1A', secondary: '#FFFFFF' },
   },
@@ -45,6 +50,7 @@ const filters = ref<Filter[]>([
     id: 'soft',
     name: 'Soft',
     emoji: '✨',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgCOeOan4f2zK062VO2n086WiiZNnQpvIqxw&s',
     description: 'Dreamy pastels',
     colors: { primary: '#FFB6C1', secondary: '#DDA0DD' },
   },
@@ -92,9 +98,17 @@ const hoveredFilter = ref<string | null>(null)
                 class="polaroid-content relative overflow-hidden group-hover:scale-110 transition-smooth duration-300"
                 :style="{ background: `linear-gradient(135deg, ${filter.colors.primary} 0%, ${filter.colors.secondary} 100%)` }"
               >
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <span class="text-6xl">{{ filter.emoji }}</span>
-                </div>
+                  <div class="absolute inset-0 overflow-hidden">
+                    <img
+                      v-if="filter.image"
+                      :src="filter.image"
+                      alt="filter preview"
+                      class="w-full h-full object-cover"
+                    />
+                    <div v-else class="absolute inset-0 flex items-center justify-center">
+                      <span class="text-6xl">{{ filter.emoji }}</span>
+                    </div>
+                  </div>
               </div>
 
               <!-- Polaroid Text -->
